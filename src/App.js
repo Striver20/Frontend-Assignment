@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useEffect, useState } from "react";
+import { fetchTickets } from "./services/api";
+import Header from "./components/Header";
+import KanbanBoard from "./components/KanbanBoard";
 
-function App() {
+const App = () => {
+  const [tickets, setTickets] = useState([]);
+  const [groupBy, setGroupBy] = useState("status");
+  const [sortBy, setSortBy] = useState("priority");
+
+  useEffect(() => {
+    // Fetch tickets on mount
+    const getTickets = async () => {
+      const data = await fetchTickets();
+      setTickets(data);
+    };
+    getTickets();
+
+    // Load saved preferences from localStorage
+    const savedGroupBy = localStorage.getItem("groupBy");
+    const savedSortBy = localStorage.getItem("sortBy");
+    if (savedGroupBy) setGroupBy(savedGroupBy);
+    if (savedSortBy) setSortBy(savedSortBy);
+  }, []);
+
+  // Save preferences when changed
+  useEffect(() => {
+    localStorage.setItem("groupBy", groupBy);
+    localStorage.setItem("sortBy", sortBy);
+  }, [groupBy, sortBy]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header
+        groupBy={groupBy}
+        setGroupBy={setGroupBy}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+      />
+      <KanbanBoard tickets={tickets} groupBy={groupBy} sortBy={sortBy} />
     </div>
   );
-}
+};
 
 export default App;

@@ -1,0 +1,83 @@
+/* Kanban.css */
+body {
+  font-family: "Arial", sans-serif; /* Set the font style similar to the image */
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f8; /* A light background color */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+}
+
+.header select {
+  background-color: #444;
+  border: 1px solid #555;
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.kanban-board {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 20px; /* Space between columns */
+}
+
+.kanban-column {
+  width: 30%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow for a floating effect */
+  padding: 15px;
+}
+
+.kanban-column h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #333; /* Dark text for headings */
+}
+
+.kanban-card {
+  background-color: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px; /* Space between cards */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow for cards */
+}
+
+.kanban-card h4 {
+  font-size: 16px;
+  color: #333; /* Dark color for card titles */
+  margin-bottom: 10px;
+}
+
+.kanban-card p {
+  font-size: 14px;
+  color: #555;
+  margin: 5px 0;
+}
+
+/* Adding a label to indicate priority level */
+.kanban-card .priority {
+  font-weight: bold;
+  color: #007bff; /* Blue color for priority text */
+}
+
+.kanban-column .kanban-card:first-child {
+  margin-top: 0; /* No margin for the first card */
+}
+
+.kanban-column .kanban-card:last-child {
+  margin-bottom: 0; /* No margin for the last card */
+}
